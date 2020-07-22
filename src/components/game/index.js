@@ -44,7 +44,7 @@ class Game extends Component {
         //return list[Math.floor((Math.random()*list.length))];
     } 
     searchQuestions = async () => {
-        const { data } = await axios.get('https://materiaquizz-backend.herokuapp.com/biologia/cards/')
+        const { data } = await axios.get(process.env.REACT_APP_API_URL + '/biologia/cards/')
         this.setState({data})
         this.reloadPage()
     }
