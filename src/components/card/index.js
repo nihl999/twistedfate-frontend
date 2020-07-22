@@ -11,7 +11,7 @@ class Card extends Component {
     }
     answer = (event) => {
         event.preventDefault()
-        if(this.state.correct === true){
+        if(this.props.correct === true){
             this.props.setState({points: this.props.points+1})
             localStorage.setItem('@tf-game/points', this.props.points+1)
             this.props.reload()
@@ -21,7 +21,8 @@ class Card extends Component {
                 localStorage.setItem('@tf-game/points', this.props.points-1)
                 this.props.reload()
             } else {
-                window.alert('You Lose')
+                window.alert('Poxa que pena desprovido de inteligencia, analfabeto, anta, azêmola, bronco, cavalgadura, estulto, idiota, ignorante, imbecil, inepto, lerdaço, néscio, palerma, parvo, tapado, tolo, toupeira (ps: n leve a serio)')
+                this.props.reload()
             }
         }
     }
