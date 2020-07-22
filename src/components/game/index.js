@@ -9,6 +9,7 @@ class Game extends Component {
         responses: [],
         points: 0,
         lastQuestion: '',
+        data: {},
     }
     componentWillMount(){
         if(isNaN(localStorage.getItem('@tf-game/points')))
@@ -43,8 +44,12 @@ class Game extends Component {
         //return list[Math.floor((Math.random()*list.length))];
     } 
     searchQuestions = async () => {
-        const { data } = await axios.get('http://localhost:4500/biologia/cards/')
-        const {question, responses} = this.get_random(data)
+        const { data } = await axios.get('https://materiaquizz-backend.herokuapp.com/biologia/cards/')
+        this.setState({data})
+        this.reloadPage()
+    }
+    reloadPage = () => {
+        const {question, responses} = this.get_random(this.state.data)
         console.log(question, responses)
         this.shuffleArray(responses)
         console.log(responses)
@@ -65,7 +70,7 @@ class Game extends Component {
                     correct={response.correct}
                     setState={p=>{this.setState(p)}}
                     points={this.state.points}
-                    reload={this.searchQuestions}
+                    reload={this.reloadPage}
                     />)}
                 </div>
             </div>
