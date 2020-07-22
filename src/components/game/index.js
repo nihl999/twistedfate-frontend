@@ -12,7 +12,7 @@ class Game extends Component {
         data: {},
     }
     componentWillMount(){
-        if(isNaN(localStorage.getItem('@tf-game/points')))
+        if(isNaN(parseInt(localStorage.getItem('@tf-game/points'))))
             this.setState({points: 0})
         else
             this.setState({points: parseInt(localStorage.getItem('@tf-game/points'))})
